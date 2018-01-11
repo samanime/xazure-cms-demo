@@ -1,0 +1,5 @@
+.idea
+dist/
+bash.exe.stackdump
+node_modules
+config.private.js
