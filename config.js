@@ -1,9 +1,9 @@
-import { join } from 'path';
 import merge from 'merge';
 import auth from 'xazure-cms-module-auth';
 import admin from 'xazure-cms-module-admin';
 import posts from 'xazure-cms-module-posts';
-import theme from 'xazure-cms-module-theme-default';
+import theme from 'xazure-cms-module-theme';
+import defaultTheme from 'xazure-cms-module-theme-default';
 import { Levels } from 'xazure-logger';
 import consoleLogger from 'xazure-logger-module-console';
 
@@ -12,7 +12,7 @@ export default merge({
   public: {},
   port: 8000,
   logger: {
-    level: Levels.DEBUG,
+    level: Levels.LOG,
     modules: [consoleLogger]
   },
   security: {
@@ -27,7 +27,7 @@ export default merge({
     { ...auth, path: '/', apiPath: '/api/auth' },
     { ...posts, path: '/', apiPath: '/api/post', public: { adminPath: '/posts' } },
     { ...admin, path: '/admin' },
-    { ...theme, path: '/', publicPath: '/public/theme' }
+    { ...theme, path: '/', publicPath: '/public/theme', apiPath: '/api/theme', theme: defaultTheme }
   ],
   db: {
     url: "MONGO_DB_URL_GOES_HERE"
